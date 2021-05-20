@@ -1,0 +1,10 @@
+@import "../../node_modules/sass-bem-constructor/dist/_sass-bem-constructor.scss";
+
+
+.pageFade-enter-active,.pageFade-leave-active{
+    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.pageFade-enter,
+.pageFade-leave-to {
+    opacity  : 0;
+}

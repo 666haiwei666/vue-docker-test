@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <% for(var key in meta) { %>
+      <meta name="<%=key%>" content="<%= meta[key] %>">
+    <% } %>
+    <title><%= APP_NAME %></title>
+    <!-- 引入样式 -->
+    <% for(var css of CDN.css) { %>
+    <link rel="stylesheet" href="<%=css%>" rel="preload" as="css">
+    <% } %>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- 引入JS -->
+    <% for(var js of CDN.js) { %>
+    <script src="<%=js%>" rel="preload" as="script"></script>
+    <% } %>
+  </body>
+</html>
