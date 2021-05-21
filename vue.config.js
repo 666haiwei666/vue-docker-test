@@ -6,6 +6,7 @@ const readConfigFile = filename => fs.readFileSync(path.join(__dirname, `./confi
 const resolve = dir => path.join(__dirname, dir)
 
 const nodeEnv = process.env.NODE_ENV
+const IS_ANALYZ = process.env.IS_ANALYZ
 const defaultConfig = yaml.safeLoad(readConfigFile('env.yaml'))
 
 module.exports = {
@@ -68,7 +69,7 @@ module.exports = {
         }
         return [opts, ...args]
       }).end()
-    if (nodeEnv == 'production') {
+    if (nodeEnv == 'production' && IS_ANALYZ == 'analyz') {
       config.plugin('webpack-bundle-analyzer')
         .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
         .tap(args => {
@@ -78,6 +79,8 @@ module.exports = {
           return [...args, params]
         })
         .end()
+    }
+    if (nodeEnv == 'production') {
       config.plugin('terser-webpack-plugin')
         .use(require('terser-webpack-plugin'))
         .tap(args => {
@@ -97,17 +100,17 @@ module.exports = {
         })
         .end()
       config.plugin('compression-webpack-plugin')
-      .use(require('compression-webpack-plugin'))
-      .tap(args=>{
-        let params = {
+        .use(require('compression-webpack-plugin'))
+        .tap(args => {
+          let params = {
             algorithm: 'gzip',
             test: /\.(js|css)$/,// 匹配文件名
             threshold: 10240, // 对超过10k的数据压缩
             deleteOriginalAssets: false, // 不删除源文件
             minRatio: 0.8 // 压缩比
-        }
-        return [...args, params]
-      })
+          }
+          return [...args, params]
+        })
     }
   },
   pluginOptions: {
