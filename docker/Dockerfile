@@ -4,5 +4,6 @@ FROM docker.io/library/nginx:latest
 COPY dist/ /usr/share/nginx/html/
 COPY defalut.conf /etc/nginx/conf.d
 EXPOSE 80
-ENTRYPOINT ["nginx","daemon off;"]
+ENTRYPOINT nginx -g "daemon off;"
+
 
