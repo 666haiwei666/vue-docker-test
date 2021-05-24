@@ -1,6 +1,6 @@
 <template>
   <div>
-    1111
+    1111hahhahah
     <el-button @click="_onPersonalCenterRouter">跳转</el-button>
     <!-- <ul class="animateIcon" v-animateIcon:maxScale="0.6">
       <li class="item-1">
