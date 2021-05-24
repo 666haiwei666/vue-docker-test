@@ -1,4 +1,3 @@
-#! /bin/sh
 #接收外部参数
 harbor_url=$1
 harbor_project_name=$2
@@ -26,9 +25,13 @@ fi
 # 登录Harbor
 docker login -u admin -p Harbor12345 $harbor_url
 
+echo ${docker login -u admin -p Harbor12345 $harbor_url}
+
 # 上传私有仓库
 
 docker push $imageName
+
+echo ${docker push $imageName}
 
 # 启动容器
 docker run -d -p $port:80 $imageName  nginx -g 'daemon off;'
