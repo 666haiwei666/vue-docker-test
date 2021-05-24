@@ -5,6 +5,5 @@ COPY defalut.conf /etc/nginx/conf.d
 COPY init.sh /init.sh
 RUN chmod +x /init.sh
 EXPOSE 80
-CMD /init.sh
-
+CMD ["/init.sh","nginx", "-g", "daemon off;"]
 
