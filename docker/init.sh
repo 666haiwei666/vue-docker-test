@@ -34,6 +34,6 @@ fi
 # echo ${docker push $imageName}
 
 # 启动容器 
-docker run -dit -p $port:80 --name=$project_name
+docker run -dit -p $port:80 --name=$project_name $imageName nginx -g daemon off
 
 echo "容器启动成功"
