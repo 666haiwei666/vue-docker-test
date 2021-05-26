@@ -5,12 +5,12 @@ project_name=$3
 tag=$4
 port=$5
 
-imageName=$harbor_url/$harbor_project_name/$project_name:$tag
+imageName=$harbor_url:$port/$harbor_project_name/$project_name:$tag
 
 echo "$imageName"
 
 #查询容器是否存在，存在则删除
-containerId=`docker ps -a | grep -w ${project_name}:${tag}  | awk '{print $1}'`
+containerId=`docker ps -a | grep -w ${imageName}`
 if [ "$containerId" !=  "" ] ; then
     #停掉容器
     docker stop $containerId
@@ -34,6 +34,6 @@ fi
 # echo ${docker push $imageName}
 
 # 启动容器 
-docker run -dit -p $port:80 --name=$project_name $imageName nginx -g daemon off
+docker run -id  -p $port:80 --name=$harbor_project_name $imageName nginx -g 'daemon off;'
 
 echo "容器启动成功"
