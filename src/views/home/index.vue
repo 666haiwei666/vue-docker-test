@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>1111hahhahah</h1>
+    <div class="hahah">跳转</div>
     <el-button @click="_onPersonalCenterRouter">跳转</el-button>
     <!-- <ul class="animateIcon" v-animateIcon:maxScale="0.6">
       <li class="item-1">
@@ -79,6 +79,10 @@ export default {
 };
 </script>
 <style lang="scss">
+.hahah{
+  font-size: 30px;
+  font-weight: 700;
+}
 .ball{
   width: 100px;
   height: 100px;
